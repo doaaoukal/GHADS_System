@@ -95,77 +95,79 @@ Before saving any aid record, the system checks:
 ## 📸 Screenshots
 
 ### 🔐 Login
-![Login](screenshots/_Login.png)
+![Login](screenshots/Login.png)
 
 ---
 
 ### 🏠 Admin Dashboard
-![Admin Dashboard](screenshots/_Admin_Dashboard.png)
+![Admin Dashboard](screenshots/Admin_Dashboard.png)
 
 ---
 
 ### 🏢 Organizations Management
-![Organizations Management](screenshots/_Admin_Organizations_Management.png)
+![Organizations Management](screenshots/Admin_Organizations_Management.png)
 
 ---
 
 ### 👤 Users Management
-![Users Management](screenshots/_Admin_Users_Management.png)
+![Users Management](screenshots/Admin_Users_Management.png)
 
 ---
 
 ### 👤 Users Management — With Photo Upload
-![Users Management With Photo](screenshots/_Admin_Users_Management_With_Photo.png)
+![Users Management With Photo](screenshots/Admin_Users_Management_With_Photo.png)
 
 ---
 
 ### 👨‍👩‍👧 Family Management (Admin)
-![Family Management](screenshots/_Admin_Family_Management.png)
+![Family Management](screenshots/Admin_Family_Management.png)
 
 ---
 
 ### 📦 Aid Distribution (Admin)
-![Aid Distribution Admin](screenshots/_Admin_Aid_Distribution.png)
+![Aid Distribution Admin](screenshots/Admin_Aid_Distribution.png)
 
 ---
 
 ### 🔑 Change Password (Admin)
-![Change Password](screenshots/_Admin_Change_Password.png)
+![Change Password](screenshots/Admin_Change_Password.png)
 
 ---
 
 ### ℹ️ About GHADS
-![About Dialog](screenshots/_About_GHADS_Dialog.png)
+![About Dialog](screenshots/About_GHADS_Dialog.png)
 
 ---
 
 ### 🏠 Coordinator Dashboard
-![Coordinator Dashboard](screenshots/_Coordinator_Dashboard.png)
+![Coordinator Dashboard](screenshots/Coordinator_Dashboard.png)
 
 ---
 
 ### 👨‍👩‍👧 Family Management (Coordinator)
-![Coordinator Family Management](screenshots/_Coordinator_Family_Management.png)
+![Coordinator Family Management](screenshots/Coordinator_Family_Management.png)
 
 ---
 
 ### 📦 Aid Distribution (Coordinator)
-![Coordinator Aid Distribution](screenshots/_Coordinator_Aid_Distribution.png)
+![Coordinator Aid Distribution](screenshots/Coordinator_Aid_Distribution.png)
 
 ---
 
 ### 👤 My Profile
-![My Profile](screenshots/_Coordinator_My_Profile.png)
+![My Profile](screenshots/Coordinator_My_Profile.png)
 
 ---
 
 ### 🔑 Change Password (Coordinator)
-![Change Password Coordinator](screenshots/_Coordinator_Change_Password.png)
+![Change Password Coordinator](screenshots/Coordinator_Change_Password.png)
 
 ---
 
 ## 👩‍💻 Developer
 
 **Doaa A Oukal**  
+Course: Programming III Lab — CSCI 2108  
 Instructor: Aya N. Alharazin  
 Islamic University of Gaza — 2026
+
