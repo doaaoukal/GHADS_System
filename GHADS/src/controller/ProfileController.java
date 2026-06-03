@@ -95,7 +95,7 @@ public class ProfileController extends BaseController {
 
     @FXML
     public void handleReset() {
-        loadProfile(); 
+        loadProfile(); // رجّع البيانات الأصلية من الـ currentUser
         selectedPhoto = currentUser.getPhoto();
         statusLabel.setText("");
     }
