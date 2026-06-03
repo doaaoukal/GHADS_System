@@ -93,27 +93,29 @@ public void goToDashboard() {
         }
     }
 
-    private void loadView(String fxmlPath) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            Parent root = loader.load();
+   private void loadView(String fxmlPath) {
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+        Parent root = loader.load();
 
-            // Pass currentUser to next controller
-            Object controller = loader.getController();
-            if (controller instanceof AdminDashboardController c) c.initData(currentUser);
-            else if (controller instanceof OrganizationController c) c.initData(currentUser);
-            else if (controller instanceof UserController c) c.initData(currentUser);
-            else if (controller instanceof FamilyController c) c.initData(currentUser);
-            else if (controller instanceof AidDistributionController c) c.initData(currentUser);
-            else if (controller instanceof ChangePasswordController c) c.initData(currentUser);
+        Object controller = loader.getController();
+        if (controller instanceof AdminDashboardController c) c.initData(currentUser);
+        else if (controller instanceof OrganizationController c) c.initData(currentUser);
+        else if (controller instanceof UserController c) c.initData(currentUser);
+        else if (controller instanceof FamilyController c) c.initData(currentUser);
+        else if (controller instanceof AidDistributionController c) c.initData(currentUser);
+        else if (controller instanceof ChangePasswordController c) c.initData(currentUser);
 
-            Stage stage = (Stage) welcomeLabel.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.centerOnScreen();
-        } catch (Exception e) {
-            System.err.println("Navigation error: " + e.getMessage());
-        }
+        Stage stage = (Stage) welcomeLabel.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.centerOnScreen();
+    } catch (Exception e) {
+        System.err.println("Navigation error: " + fxmlPath);
+        System.err.println("Exception type: " + e.getClass().getName());
+        System.err.println("Cause: " + (e.getCause() != null ? e.getCause().getMessage() : "null"));
+        e.printStackTrace();
     }
+}
 
     public User getCurrentUser() { return currentUser; }
 }
