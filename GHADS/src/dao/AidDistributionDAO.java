@@ -16,7 +16,9 @@ public class AidDistributionDAO {
     private Connection conn = DBConnection.getInstance().getConnection();
     private FamilyDAO familyDAO = new FamilyDAO();
 
+    // ✅ الـ Duplicate Check الرئيسي (مع البونص - aid_type)
     public DuplicateCheckResult checkDuplicate(int familyId, String aidType) {
+        // جيب بيانات الأسرة
         var family = familyDAO.getAllFamilies().stream()
                 .filter(f -> f.getFamilyId() == familyId)
                 .findFirst().orElse(null);
@@ -32,7 +34,7 @@ public class AidDistributionDAO {
         String sql = """
             SELECT ad.*, o.name as org_name
             FROM aid_distribution ad
-            JOIN organizations o ON ad.org_id = o.org_id
+            JOIN organizations o ON ad.org_id = o.organization_id
             WHERE ad.family_id = ?
             AND ad.aid_type = ?
             AND ad.distribution_date >= ?
@@ -86,7 +88,7 @@ public class AidDistributionDAO {
                    o.name as org_name, u.full_name as coordinator_name
             FROM aid_distribution ad
             JOIN families f ON ad.family_id = f.family_id
-            JOIN organizations o ON ad.org_id = o.org_id
+            JOIN organizations o ON ad.org_id = o.organization_id
             JOIN users u ON ad.distributed_by = u.user_id
             ORDER BY ad.distribution_date DESC
             """;
@@ -106,7 +108,7 @@ public class AidDistributionDAO {
                    o.name as org_name, u.full_name as coordinator_name
             FROM aid_distribution ad
             JOIN families f ON ad.family_id = f.family_id
-            JOIN organizations o ON ad.org_id = o.org_id
+            JOIN organizations o ON ad.org_id = o.organization_id
             JOIN users u ON ad.distributed_by = u.user_id
             WHERE ad.org_id = ?
             ORDER BY ad.distribution_date DESC
