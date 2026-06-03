@@ -88,7 +88,7 @@ public abstract class BaseController {
             "It prevents duplicate assistance by maintaining\n" +
             "one shared database across all organizations.\n\n" +
             "────────────────────────\n" +
-            "Developer: [Your Name]\n" +
+            "Developer: [Doaa A Oukal]\n" +
             "Course: Programming III Lab — CSCI 2108\n" +
             "Instructor: Aya N. Alharazin\n" +
             "Islamic University of Gaza — 2026"

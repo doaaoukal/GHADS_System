@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
 public class User {
@@ -10,9 +6,10 @@ public class User {
     private String password;
     private String fullName;
     private String email;
-    private String role; // ADMIN or COORDINATOR
+    private String role;
     private int orgId;
-    private byte[] photo; // Bonus
+    private byte[] photo;
+    private String orgName; // For display in table
 
     public User() {}
 
@@ -51,4 +48,7 @@ public class User {
 
     public byte[] getPhoto() { return photo; }
     public void setPhoto(byte[] photo) { this.photo = photo; }
+
+    public String getOrgName() { return orgName; }
+    public void setOrgName(String orgName) { this.orgName = orgName; }
 }

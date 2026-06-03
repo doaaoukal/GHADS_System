@@ -1,8 +1,7 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
 <BorderPane prefHeight="650.0" prefWidth="1000.0"
             xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
@@ -26,8 +25,6 @@
                 <Label text="Users Management"
                        style="-fx-font-size:20; -fx-font-weight:bold; -fx-text-fill:#1e272e;"/>
             </HBox>
-
-            <!-- Form -->
             <HBox spacing="15" alignment="CENTER_LEFT">
                 <VBox spacing="5" alignment="CENTER">
                     <ImageView fx:id="photoView" fitWidth="70" fitHeight="70"
@@ -37,27 +34,24 @@
                 </VBox>
                 <VBox spacing="8">
                     <HBox spacing="10">
-                        <TextField fx:id="fullNameField"  promptText="Full Name"  prefWidth="180" styleClass="input-field"/>
-                        <TextField fx:id="usernameField"  promptText="Username"   prefWidth="150" styleClass="input-field"/>
+                        <TextField fx:id="fullNameField" promptText="Full Name" prefWidth="180" styleClass="input-field"/>
+                        <TextField fx:id="usernameField" promptText="Username" prefWidth="150" styleClass="input-field"/>
                         <PasswordField fx:id="passwordField" promptText="Password" prefWidth="150" styleClass="input-field"/>
                     </HBox>
                     <HBox spacing="10">
                         <TextField fx:id="emailField" promptText="Email" prefWidth="200" styleClass="input-field"/>
-                        <ComboBox fx:id="roleCombo"   promptText="Role"  prefWidth="140"/>
-                        <ComboBox fx:id="orgCombo"    promptText="Organization" prefWidth="180"/>
+                        <ComboBox fx:id="roleCombo" promptText="Role" prefWidth="140"/>
+                        <ComboBox fx:id="orgCombo" promptText="Organization" prefWidth="180"/>
                     </HBox>
                 </VBox>
             </HBox>
-
             <HBox spacing="10">
                 <Button text="Add"    onAction="#handleAdd"    styleClass="btn-primary"/>
                 <Button text="Update" onAction="#handleUpdate" styleClass="btn-warning"/>
                 <Button text="Delete" onAction="#handleDelete" styleClass="btn-danger"/>
                 <Button text="Reset"  onAction="#handleReset"  styleClass="btn-secondary"/>
             </HBox>
-
             <Label fx:id="statusLabel" style="-fx-font-size:13;"/>
-
             <TableView fx:id="userTable" VBox.vgrow="ALWAYS">
                 <columns>
                     <TableColumn fx:id="colId"       text="ID"           prefWidth="50"/>
