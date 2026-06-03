@@ -38,7 +38,7 @@ public class AidDistributionController extends BaseController {
     @FXML private ComboBox<Family> familyCombo;
     @FXML private ComboBox<String> aidTypeCombo;
     @FXML private DatePicker distributionDatePicker;
-    @FXML private ComboBox<Organization> orgFilterCombo; 
+    @FXML private ComboBox<Organization> orgFilterCombo; // للـ Admin فقط
     @FXML private Label statusLabel;
 
     private AidDistributionDAO aidDAO = new AidDistributionDAO();
@@ -54,11 +54,13 @@ public class AidDistributionController extends BaseController {
         loadDistributions();
 
         if (user.getRole().equals("COORDINATOR")) {
+            // إخفاء فلتر المنظمة للـ Coordinator
             if (orgFilterCombo != null) {
                 orgFilterCombo.setVisible(false);
                 orgFilterCombo.setManaged(false);
             }
         } else {
+            // الـ Admin يشوف بس، ما يسجل توزيعات
             familyCombo.setDisable(true);
             aidTypeCombo.setDisable(true);
             distributionDatePicker.setDisable(true);
@@ -80,9 +82,11 @@ public class AidDistributionController extends BaseController {
                 "Food", "Medicine", "Clothing", "Shelter", "Water", "Hygiene Kit", "Cash"
         ));
 
+        // Families مرتبة حسب الـ vulnerability
         List<Family> families = familyDAO.getFamiliesByVulnerability();
         familyCombo.setItems(FXCollections.observableArrayList(families));
 
+        // Org filter للـ Admin
         if (orgFilterCombo != null) {
             List<Organization> orgs = orgDAO.getAllOrganizations();
             orgFilterCombo.setItems(FXCollections.observableArrayList(orgs));
@@ -98,6 +102,7 @@ public class AidDistributionController extends BaseController {
         distTable.setItems(distList);
     }
 
+    // ✅ الأهم: تسجيل توزيع جديد مع الـ Duplicate Check
     @FXML
     public void handleAddDistribution() {
         if (!validateInputs()) return;
@@ -105,10 +110,12 @@ public class AidDistributionController extends BaseController {
         Family selectedFamily = familyCombo.getValue();
         String aidType = aidTypeCombo.getValue();
 
+        // ── Duplicate Check ──────────────────────────────
         DuplicateCheckResult result = aidDAO.checkDuplicate(selectedFamily.getFamilyId(), aidType);
 
         if (result.isDuplicate()) {
             AidDistribution existing = result.getExistingRecord();
+            // عرض Alert واضح بكل التفاصيل
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Duplicate Aid Detected ⚠️");
             alert.setHeaderText("This family already received this aid recently!");
