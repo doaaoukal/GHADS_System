@@ -16,9 +16,7 @@ public class AidDistributionDAO {
     private Connection conn = DBConnection.getInstance().getConnection();
     private FamilyDAO familyDAO = new FamilyDAO();
 
-    // ✅ الـ Duplicate Check الرئيسي (مع البونص - aid_type)
     public DuplicateCheckResult checkDuplicate(int familyId, String aidType) {
-        // جيب بيانات الأسرة
         var family = familyDAO.getAllFamilies().stream()
                 .filter(f -> f.getFamilyId() == familyId)
                 .findFirst().orElse(null);
