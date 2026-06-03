@@ -1,110 +1,171 @@
-# GHADS – Humanitarian Aid Distribution System
+# 🌱 GHADS — Gaza Humanitarian Aid Distribution System
+
+A desktop application built in Java that helps humanitarian organizations in Gaza coordinate aid distribution for displaced families.
 
 ---
 
-## 📌 System Name & Purpose
+## 📌 System Purpose
 
-**GHADS (Humanitarian Aid Distribution System)** is a desktop-based application developed using JavaFX and MySQL.
-
-The main purpose of the system is to manage and organize humanitarian aid distribution processes efficiently by handling:
-- Beneficiary families
-- Humanitarian organizations
-- System users (Admin & Coordinator)
-- Aid distribution records
-
-The system ensures structured data management and improves the efficiency of humanitarian operations.
+GHADS solves a critical coordination problem: when multiple organizations work separately, the same family might receive aid multiple times while another family receives nothing. GHADS fixes this by maintaining **one shared database** for all organizations, ensuring fair and transparent distribution.
 
 ---
 
-## ❗ Problem It Solves
+## 🚨 The Problem It Solves
 
-Humanitarian organizations often face problems such as:
-- Manual data entry errors
-- Difficulty tracking aid distribution
-- Lack of organized beneficiary records
-- Inefficient communication between teams
+During humanitarian crises, multiple NGOs and UN agencies operate independently — leading to:
+- Duplicate aid going to the same families
+- Other families receiving no aid at all
+- No visibility into what other organizations have distributed
 
-GHADS solves these problems by providing:
-- A centralized digital system
-- Automated tracking of aid distribution
-- Secure role-based access control
-- Organized database management
+GHADS addresses this by:
+- Registering every family **once** in a shared database
+- **Automatically blocking duplicate distributions** within 30 days for MEDIUM/LOW vulnerability families
+- Allowing coordinators from different organizations to see the full picture
 
 ---
 
 ## 🛠️ Technologies Used
 
-- Java (OOP)
-- JavaFX (User Interface)
-- FXML (UI Design)
-- MySQL (Database)
-- JDBC (Database Connectivity)
-- CSS (Styling)
-- NetBeans IDE
+| Technology | Purpose |
+|---|---|
+| Java | Core programming language |
+| JavaFX + Scene Builder | Desktop UI framework |
+| CSS | Styling and theming |
+| MySQL | Relational database |
+| JDBC | Database connectivity |
 
 ---
 
 ## 🏗️ Architecture Pattern
 
-The system follows a **Layered Architecture (MVC-like structure)**:
+The project follows a multi-layered architecture combining:
 
-- **Model:** Represents data (Entities like Users, Families, Organizations)
-- **View:** JavaFX FXML interfaces
-- **Controller:** Handles logic and user interactions
-- **DAO Layer:** Manages database operations
-- **Utility Layer:** Handles database connection and helpers
+- **MVC (Model - View - Controller)** — separates UI, logic, and data
+- **DAO (Data Access Object)** — all database operations go through dedicated DAO classes
+- **Singleton** — used for shared configuration (e.g., database connection)
 
-This separation improves:
-- Code maintainability
-- Scalability
-- Organization of logic
+```
+src/
+├── model/         # Data classes (User, Family, Organization, AidDistribution)
+├── view/          # FXML files + CSS (built with Scene Builder)
+├── controller/    # JavaFX controllers (handle UI events)
+├── dao/           # Database access layer (JDBC queries)
+└── util/          # Singleton config, helpers
+```
 
 ---
 
 ## 👥 User Roles
 
-### 🔵 Admin
-- Manage users
-- Manage organizations
-- Manage families
-- Manage aid distribution
-- Full system access
+### 🔴 Admin
+- Manages organizations, users, and families system-wide
+- Views all aid distributions across all organizations
+- Full CRUD on all entities
 
 ### 🟢 Coordinator
-- View families
-- View aid records
-- Limited system access
+- Belongs to one organization
+- Registers families and records aid distributions
+- The system runs automatic duplicate checks before saving any distribution
 
 ---
 
-## 📸 System Screenshots
+## ✅ Key Feature — Duplicate Check
 
-### 🔐 Login Page
-![Login](screenshots/login.png)
+Before saving any aid record, the system checks:
 
-### 📊 Admin Dashboard
-![Dashboard](screenshots/dashboard.png)
+| Vulnerability Level | Received aid in last 30 days? | Result |
+|---|---|---|
+| HIGH | Yes | ✅ Allowed |
+| MEDIUM | Yes (same aid type) | ❌ Rejected with alert |
+| LOW | Yes (same aid type) | ❌ Rejected with alert |
 
-### 👨‍👩‍👧 Families Management
-![Families](screenshots/families.png)
+---
+
+## 🗄️ Database Schema
+
+**4 main tables:** `Organization`, `User`, `Family`, `AidDistribution`
+
+- `Organization` → has many `Users` and `AidDistributions`
+- `User` → belongs to one `Organization`, has many `AidDistributions`
+- `Family` → has many `AidDistributions`
+- `AidDistribution` → links `Family` + `Organization` + `User` + `aid_type` + `date`
+
+---
+
+## 📸 Screenshots
+
+### 🔐 Login
+![Login](screenshots/_Login.png)
+
+---
+
+### 🏠 Admin Dashboard
+![Admin Dashboard](screenshots/_Admin_Dashboard.png)
+
+---
 
 ### 🏢 Organizations Management
-![Organizations](screenshots/organizations.png)
-
-### 🎁 Aid Distribution
-![Aid Distribution](screenshots/aid.png)
+![Organizations Management](screenshots/_Admin_Organizations_Management.png)
 
 ---
 
-## 🚀 How to Run
+### 👤 Users Management
+![Users Management](screenshots/_Admin_Users_Management.png)
 
-1. Open project in NetBeans
-2. Import MySQL database
-3. Configure DB connection in `DBConnection.java`
-4. Run the main class
+---
+
+### 👤 Users Management — With Photo Upload
+![Users Management With Photo](screenshots/_Admin_Users_Management_With_Photo.png)
+
+---
+
+### 👨‍👩‍👧 Family Management (Admin)
+![Family Management](screenshots/_Admin_Family_Management.png)
+
+---
+
+### 📦 Aid Distribution (Admin)
+![Aid Distribution Admin](screenshots/_Admin_Aid_Distribution.png)
+
+---
+
+### 🔑 Change Password (Admin)
+![Change Password](screenshots/_Admin_Change_Password.png)
+
+---
+
+### ℹ️ About GHADS
+![About Dialog](screenshots/_About_GHADS_Dialog.png)
+
+---
+
+### 🏠 Coordinator Dashboard
+![Coordinator Dashboard](screenshots/_Coordinator_Dashboard.png)
+
+---
+
+### 👨‍👩‍👧 Family Management (Coordinator)
+![Coordinator Family Management](screenshots/_Coordinator_Family_Management.png)
+
+---
+
+### 📦 Aid Distribution (Coordinator)
+![Coordinator Aid Distribution](screenshots/_Coordinator_Aid_Distribution.png)
+
+---
+
+### 👤 My Profile
+![My Profile](screenshots/_Coordinator_My_Profile.png)
+
+---
+
+### 🔑 Change Password (Coordinator)
+![Change Password Coordinator](screenshots/_Coordinator_Change_Password.png)
 
 ---
 
 ## 👩‍💻 Developer
 
-**Name:** Doaa Oukal  
+**Doaa A Oukal**  
+Instructor: Aya N. Alharazin  
+Islamic University of Gaza — 2026
