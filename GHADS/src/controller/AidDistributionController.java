@@ -102,7 +102,6 @@ public class AidDistributionController extends BaseController {
         distTable.setItems(distList);
     }
 
-    // ✅ الأهم: تسجيل توزيع جديد مع الـ Duplicate Check
     @FXML
     public void handleAddDistribution() {
         if (!validateInputs()) return;
