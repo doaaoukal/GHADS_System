@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane prefHeight="600.0" prefWidth="900.0"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.CoordinatorDashboardController"
+            stylesheets="@/style/style.css">
+
+    <!-- ── Sidebar ── -->
+    <left>
+        <VBox prefWidth="200.0" spacing="0"
+              style="-fx-background-color: #1e272e;">
+            <children>
+                <VBox alignment="CENTER" spacing="5"
+                      style="-fx-padding: 30 20 20 20;">
+                    <Label text="GHADS" style="-fx-font-size:22; -fx-font-weight:bold; -fx-text-fill:white;"/>
+                    <Label text="Coordinator Panel" style="-fx-font-size:11; -fx-text-fill:#95a5a6;"/>
+                    <Pane prefHeight="2" prefWidth="120"
+                          style="-fx-background-color:#2ecc71; -fx-background-radius:2;"/>
+                </VBox>
+
+                <Button text="🏠  Dashboard"       onAction="#goToDashboard"      maxWidth="Infinity" styleClass="sidebar-btn"/>
+                <Button text="👨‍👩‍👧  Families"        onAction="#goToFamilies"        maxWidth="Infinity" styleClass="sidebar-btn"/>
+                <Button text="📦  Aid Distribution" onAction="#goToAidDistribution" maxWidth="Infinity" styleClass="sidebar-btn"/>
+                <Button text="👤  Profile"          onAction="#goToProfile"         maxWidth="Infinity" styleClass="sidebar-btn"/>
+
+                <Region VBox.vgrow="ALWAYS"/>
+
+                <Button text="🔑  Change Password"  onAction="#goToChangePassword"  maxWidth="Infinity" styleClass="sidebar-btn"/>
+                <Button text="🚪  Logout"            onAction="#handleLogout"        maxWidth="Infinity" styleClass="sidebar-btn-danger"/>
+            </children>
+        </VBox>
+    </left>
+
+    <!-- ── Main Content ── -->
+    <center>
+        <VBox spacing="30" style="-fx-padding: 40; -fx-background-color: #f8f9fa;">
+            <children>
+                <VBox spacing="4">
+                    <Label fx:id="welcomeLabel" text="Welcome 👋"
+                           style="-fx-font-size:24; -fx-font-weight:bold; -fx-text-fill:#1e272e;"/>
+                    <Label text="Your Organization Overview"
+                           style="-fx-font-size:13; -fx-text-fill:#7f8c8d;"/>
+                </VBox>
+
+                <HBox spacing="20">
+                    <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+                        <Label text="👨‍👩‍👧" style="-fx-font-size:28;"/>
+                        <Label fx:id="totalFamiliesLabel" text="0" styleClass="stat-number"/>
+                        <Label text="Total Families" styleClass="stat-title"/>
+                    </VBox>
+                    <VBox styleClass="stat-card-green" HBox.hgrow="ALWAYS">
+                        <Label text="✅" style="-fx-font-size:28;"/>
+                        <Label fx:id="familiesServedLabel" text="0" styleClass="stat-number"/>
+                        <Label text="Served by Us" styleClass="stat-title"/>
+                    </VBox>
+                    <VBox styleClass="stat-card-red" HBox.hgrow="ALWAYS">
+                        <Label text="⚠️" style="-fx-font-size:28;"/>
+                        <Label fx:id="familiesNotServedLabel" text="0" styleClass="stat-number"/>
+                        <Label text="Not Yet Served" styleClass="stat-title"/>
+                    </VBox>
+                </HBox>
+            </children>
+        </VBox>
+    </center>
+
+    <top>
+    <MenuBar styleClass="menu-bar">
+        <Menu text="File">
+            <MenuItem text="Exit" onAction="#handleExit"/>
+        </Menu>
+        <Menu text="Format">
+            <MenuItem text="Font Size"        onAction="#handleFontSize"/>
+            <MenuItem text="Font Family"      onAction="#handleFontFamily"/>
+            <MenuItem text="Background Color" onAction="#handleThemeToggle"/>
+        </Menu>
+        <Menu text="Help">
+            <MenuItem text="About App" onAction="#handleAbout"/>
+        </Menu>
+    </MenuBar>
+</top>
+</BorderPane>

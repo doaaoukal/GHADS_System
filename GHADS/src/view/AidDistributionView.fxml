@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane prefHeight="650.0" prefWidth="1000.0"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.AidDistributionController"
+            stylesheets="@/style/style.css">
+    <top>
+    <MenuBar styleClass="menu-bar">
+        <Menu text="File">
+            <MenuItem text="Exit" onAction="#handleExit"/>
+        </Menu>
+        <Menu text="Format">
+            <MenuItem text="Font Size"        onAction="#handleFontSize"/>
+            <MenuItem text="Font Family"      onAction="#handleFontFamily"/>
+            <MenuItem text="Background Color" onAction="#handleThemeToggle"/>
+        </Menu>
+        <Menu text="Help">
+            <MenuItem text="About App" onAction="#handleAbout"/>
+        </Menu>
+    </MenuBar>
+</top>
+    <center>
+        <VBox spacing="20" style="-fx-padding:30; -fx-background-color:#f8f9fa;">
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Button text="← Back" onAction="#goBack" styleClass="btn-secondary"/>
+                <Label text="Aid Distribution"
+                       style="-fx-font-size:20; -fx-font-weight:bold; -fx-text-fill:#1e272e;"/>
+            </HBox>
+
+            <!-- Filter buttons للـ Coordinator -->
+            <HBox spacing="10">
+                <Button text="🔴 Most Vulnerable First" onAction="#showMostVulnerable" styleClass="btn-warning"/>
+                <Button text="⚪ Not Yet Served"        onAction="#showNotServed"       styleClass="btn-secondary"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <!-- Filter by org للـ Admin فقط - يتخفى للـ Coordinator من الكود -->
+                <ComboBox fx:id="orgFilterCombo" promptText="Filter by Organization" prefWidth="200" managed="true"/>
+                <Button text="Filter" onAction="#handleFilterByOrg" styleClass="btn-primary"/>
+            </HBox>
+
+            <!-- Form -->
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <ComboBox fx:id="familyCombo"   promptText="Select Family"   prefWidth="250"/>
+                <ComboBox fx:id="aidTypeCombo"  promptText="Aid Type"        prefWidth="160"/>
+                <DatePicker fx:id="distributionDatePicker" promptText="Date" prefWidth="180"/>
+                <Button text="Record Distribution" onAction="#handleAddDistribution" styleClass="btn-primary"/>
+                <Button text="Reset"               onAction="#handleReset"            styleClass="btn-secondary"/>
+            </HBox>
+
+            <Label fx:id="statusLabel" style="-fx-font-size:13;"/>
+
+            <TableView fx:id="distTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colId"          text="ID"          prefWidth="50"/>
+                    <TableColumn fx:id="colFamily"      text="Family"      prefWidth="180"/>
+                    <TableColumn fx:id="colOrg"         text="Organization" prefWidth="160"/>
+                    <TableColumn fx:id="colCoordinator" text="Coordinator" prefWidth="150"/>
+                    <TableColumn fx:id="colAidType"     text="Aid Type"    prefWidth="120"/>
+                    <TableColumn fx:id="colDate"        text="Date"        prefWidth="120"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>

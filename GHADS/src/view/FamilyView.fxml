@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane prefHeight="650.0" prefWidth="1000.0"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.FamilyController"
+            stylesheets="@/style/style.css">
+    <top>
+    <MenuBar styleClass="menu-bar">
+        <Menu text="File">
+            <MenuItem text="Exit" onAction="#handleExit"/>
+        </Menu>
+        <Menu text="Format">
+            <MenuItem text="Font Size"        onAction="#handleFontSize"/>
+            <MenuItem text="Font Family"      onAction="#handleFontFamily"/>
+            <MenuItem text="Background Color" onAction="#handleThemeToggle"/>
+        </Menu>
+        <Menu text="Help">
+            <MenuItem text="About App" onAction="#handleAbout"/>
+        </Menu>
+    </MenuBar>
+</top>
+    <center>
+        <VBox spacing="20" style="-fx-padding:30; -fx-background-color:#f8f9fa;">
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Button text="← Back" onAction="#goBack" styleClass="btn-secondary"/>
+                <Label text="Family Management"
+                       style="-fx-font-size:20; -fx-font-weight:bold; -fx-text-fill:#1e272e;"/>
+            </HBox>
+
+            <!-- Form Row 1 -->
+            <HBox spacing="12">
+                <TextField fx:id="householdNameField" promptText="Household Name" prefWidth="200" styleClass="input-field"/>
+                <TextField fx:id="phoneField"         promptText="Phone"          prefWidth="150" styleClass="input-field"/>
+                <TextField fx:id="locationField"      promptText="Location/Camp"  prefWidth="180" styleClass="input-field"/>
+                <TextField fx:id="familySizeField"    promptText="Family Size"    prefWidth="120" styleClass="input-field"/>
+            </HBox>
+
+            <!-- Form Row 2 -->
+            <HBox spacing="12">
+                <TextField fx:id="nationalIdField"    promptText="National ID"    prefWidth="180" styleClass="input-field"/>
+                <ComboBox fx:id="vulnerabilityCombo"  promptText="Vulnerability"  prefWidth="150"/>
+                <DatePicker fx:id="registrationDatePicker" promptText="Registration Date" prefWidth="180"/>
+            </HBox>
+
+            <HBox spacing="10">
+                <Button text="Add"    onAction="#handleAdd"    styleClass="btn-primary"/>
+                <Button text="Update" onAction="#handleUpdate" styleClass="btn-warning"/>
+                <Button text="Delete" onAction="#handleDelete" styleClass="btn-danger"/>
+                <Button text="Reset"  onAction="#handleReset"  styleClass="btn-secondary"/>
+            </HBox>
+
+            <Label fx:id="statusLabel" style="-fx-font-size:13;"/>
+
+            <TableView fx:id="familyTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colId"            text="ID"            prefWidth="50"/>
+                    <TableColumn fx:id="colName"          text="Name"          prefWidth="160"/>
+                    <TableColumn fx:id="colPhone"         text="Phone"         prefWidth="120"/>
+                    <TableColumn fx:id="colLocation"      text="Location"      prefWidth="130"/>
+                    <TableColumn fx:id="colSize"          text="Size"          prefWidth="60"/>
+                    <TableColumn fx:id="colNationalId"    text="National ID"   prefWidth="120"/>
+                    <TableColumn fx:id="colVulnerability" text="Vulnerability" prefWidth="110"/>
+                    <TableColumn fx:id="colLastAid"       text="Last Aid Date" prefWidth="120"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>

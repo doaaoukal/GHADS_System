@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<HBox prefHeight="500.0" prefWidth="780.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.scene.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController" stylesheets="@/style/style.css">
+   <children>
+      <VBox alignment="CENTER" prefWidth="340.0" style="-fx-background-color: #1e272e; -fx-padding: 30;" spacing="20.0" HBox.hgrow="NEVER">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="GHADS">
+               <font>
+                  <Font name="Segoe UI Bold" size="46.0" />
+               </font>
+            </Text>
+            <Pane prefHeight="2.0" prefWidth="150.0" maxWidth="150.0" style="-fx-background-color: #2ecc71; -fx-background-radius: 2;" />
+            <Text fill="#dcdde1" strokeType="OUTSIDE" strokeWidth="0.0" text="Gaza Humanitarian Aid&#10;Distribution System" textAlignment="CENTER" wrappingWidth="240.0">
+               <font>
+                  <Font name="Segoe UI" size="15.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER_LEFT" prefWidth="440.0" spacing="25.0" style="-fx-background-color: #ffffff; -fx-padding: 60;" HBox.hgrow="ALWAYS">
+         <children>
+            <VBox spacing="5.0">
+               <children>
+                  <Text fill="#1e272e" strokeType="OUTSIDE" strokeWidth="0.0" text="Account Login">
+                     <font>
+                        <Font name="Segoe UI Bold" size="28.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+            <VBox spacing="8.0">
+               <children>
+                  <Label text="Username" textFill="#2f3640">
+                     <font>
+                        <Font name="Segoe UI Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="usernameField" prefHeight="42.0" promptText="Enter your username" style="-fx-background-color: #ffffff; -fx-border-color: #dcdde1; -fx-border-width: 1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 0 12 0 12; -fx-text-fill: #1e272e;">
+                     <font>
+                        <Font name="Segoe UI" size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox spacing="8.0">
+               <children>
+                  <Label text="Password" textFill="#2f3640">
+                     <font>
+                        <Font name="Segoe UI Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="passwordField" prefHeight="42.0" promptText="Enter your password" style="-fx-background-color: #ffffff; -fx-border-color: #dcdde1; -fx-border-width: 1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 0 12 0 12; -fx-text-fill: #1e272e;">
+                     <font>
+                        <Font name="Segoe UI" size="14.0" />
+                     </font>
+                  </PasswordField>
+               </children>
+            </VBox>
+            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#handleLogin" prefHeight="45.0" prefWidth="320.0" maxWidth="Infinity" style="-fx-background-color: #27ae60; -fx-background-radius: 8; -fx-cursor: hand;" text="Sign In" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Bold" size="15.0" />
+               </font>
+            </Button>
+            <Label fx:id="errorLabel" textAlignment="CENTER" textFill="#e74c3c" wrapText="true">
+               <font>
+                  <Font name="Segoe UI Semibold" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</HBox>
