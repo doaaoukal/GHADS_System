@@ -28,7 +28,7 @@ public class OrganizationDAO {
     }
 
     public boolean updateOrganization(Organization org) {
-        String sql = "UPDATE organizations SET name=?, type=?, contact_info=? WHERE org_id=?";
+        String sql = "UPDATE organizations SET name=?, type=?, contact_info=? WHERE organization_id=?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, org.getName());
             ps.setString(2, org.getType());
@@ -42,7 +42,7 @@ public class OrganizationDAO {
     }
 
     public boolean deleteOrganization(int orgId) {
-        String sql = "DELETE FROM organizations WHERE org_id=?";
+        String sql = "DELETE FROM organizations WHERE organization_id=?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, orgId);
             return ps.executeUpdate() > 0;
@@ -65,7 +65,7 @@ public class OrganizationDAO {
     }
 
     public Organization getOrganizationById(int orgId) {
-        String sql = "SELECT * FROM organizations WHERE org_id=?";
+        String sql = "SELECT * FROM organizations WHERE organization_id=?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, orgId);
             ResultSet rs = ps.executeQuery();
