@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dao;
 
 import model.User;
@@ -22,7 +18,8 @@ public class UserDAO {
             ps.setString(3, user.getFullName());
             ps.setString(4, user.getEmail());
             ps.setString(5, user.getRole());
-            ps.setInt(6, user.getOrgId());
+            if (user.getOrgId() == 0) ps.setNull(6, Types.INTEGER);
+            else ps.setInt(6, user.getOrgId());
             ps.setBytes(7, user.getPhoto());
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -39,7 +36,8 @@ public class UserDAO {
             ps.setString(3, user.getFullName());
             ps.setString(4, user.getEmail());
             ps.setString(5, user.getRole());
-            ps.setInt(6, user.getOrgId());
+            if (user.getOrgId() == 0) ps.setNull(6, Types.INTEGER);
+            else ps.setInt(6, user.getOrgId());
             ps.setBytes(7, user.getPhoto());
             ps.setInt(8, user.getUserId());
             return ps.executeUpdate() > 0;
@@ -62,7 +60,12 @@ public class UserDAO {
 
     public List<User> getAllUsers() {
         List<User> list = new ArrayList<>();
-        String sql = "SELECT * FROM users WHERE role='COORDINATOR'";
+        String sql = """
+            SELECT u.*, o.name as org_name
+            FROM users u
+            LEFT JOIN organizations o ON u.organization_id = o.organization_id
+            WHERE u.role = 'COORDINATOR'
+            """;
         try (Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(sql)) {
             while (rs.next()) list.add(mapUser(rs));
@@ -73,7 +76,12 @@ public class UserDAO {
     }
 
     public User getUserByCredentials(String username, String password) {
-        String sql = "SELECT * FROM users WHERE username=? AND password=?";
+        String sql = """
+            SELECT u.*, o.name as org_name
+            FROM users u
+            LEFT JOIN organizations o ON u.organization_id = o.organization_id
+            WHERE u.username=? AND u.password=?
+            """;
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, username);
             ps.setString(2, password);
@@ -133,7 +141,7 @@ public class UserDAO {
     }
 
     private User mapUser(ResultSet rs) throws SQLException {
-        return new User(
+        User user = new User(
             rs.getInt("user_id"),
             rs.getString("username"),
             rs.getString("password"),
@@ -143,5 +151,8 @@ public class UserDAO {
             rs.getInt("organization_id"),
             rs.getBytes("photo_path")
         );
+        // Set org name for display (may be null for ADMIN)
+        try { user.setOrgName(rs.getString("org_name")); } catch (SQLException ignored) {}
+        return user;
     }
 }
