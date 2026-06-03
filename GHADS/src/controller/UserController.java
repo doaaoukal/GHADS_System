@@ -70,7 +70,7 @@ public class UserController extends BaseController {
         colUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colRole.setCellValueFactory(new PropertyValueFactory<>("role"));
-        colOrg.setCellValueFactory(new PropertyValueFactory<>("orgName")); // ✅ Fix: عمود المنظمة كان ناقص
+        colOrg.setCellValueFactory(new PropertyValueFactory<>("orgName"));
     }
 
     private void setupCombos() {
